@@ -22,8 +22,8 @@ const _Layout = () =>{
                     </View>
                 )
             }}>
-            <Tabs.Screen name="index" options={{ title: "Home" }} />
-            <Tabs.Screen name="meniu" options={{ title: "Meniu" }} />
+            <Tabs.Screen name="home" options={{ title: "Home" }} />
+            <Tabs.Screen name="menu" options={{ title: "Menu" }} />
         </Tabs>
     )
 }
