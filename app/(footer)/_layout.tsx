@@ -16,11 +16,4 @@ const _Layout = () =>{
     )
 }
 
-const styles = StyleSheet.create({
-    tabContainer: {
-        flexDirection: "row",
-        alignItems: "center",
-    }
-})
-
 export default _Layout
