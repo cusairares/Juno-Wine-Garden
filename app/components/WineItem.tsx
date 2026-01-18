@@ -22,7 +22,7 @@ export function WineItem({ wineData }: WineItemProps) {
     try {
       const response = await fetch(`https://api.unsplash.com/search/photos/?client_id=${API_KEY}&query=${name}&per_page=1`);
       const data = await response.json();
-      return data.results[0].urls.small
+      return data.results?.[0]?.urls?.small;
     } catch (error) {
       console.error(error);
     }

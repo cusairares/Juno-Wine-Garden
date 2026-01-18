@@ -55,9 +55,14 @@ const Cart = () => {
     ]);
   };
 
-  const renderItem = ({ item }) => (
+  const renderItem = ({item} : any)=> (
     <View style={styles.itemContainer}>
-      <Image source={{ uri: item.image }} style={styles.itemImage} />
+      <Image source={
+        item.image 
+        ? { uri: item.image } 
+        : require("../../assets/images/react-logo.png")
+      } 
+      style={styles.itemImage} />
       <View style={styles.itemDetails}>
         <Text style={styles.itemName}>{item.name}</Text>
         <Text style={styles.itemPrice}>{item.price.toFixed(2)} RON</Text>
