@@ -1,4 +1,4 @@
-import { Pressable, Text, View, TouchableOpacity } from "react-native";
+import { Pressable, Text, TouchableOpacity, View } from "react-native";
 import { useCart } from "../context/CartContext";
 
 interface Wine {
@@ -45,7 +45,7 @@ export function WineItem({ wineData }: WineItemProps) {
                 {wineData.name}
               </Text>
               <Text className="text-primary text-base font-medium">
-                ${wineData.price}
+                RON{wineData.price}
               </Text>
             </View>
             <View className="flex-row -mt-1">

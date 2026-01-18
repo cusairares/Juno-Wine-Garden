@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, FlatList, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useCart } from '../context/CartContext';
 
 const Cart = () => {
@@ -42,7 +42,7 @@ const Cart = () => {
         contentContainerStyle={styles.listContainer}
       />
       <View style={styles.totalContainer}>
-        <Text style={styles.totalText}>Total: ${total.toFixed(2)}</Text>
+        <Text style={styles.totalText}>Total: RON{total.toFixed(2)}</Text>
         <TouchableOpacity style={styles.checkoutButton}>
           <Text style={styles.checkoutButtonText}>Place order</Text>
         </TouchableOpacity>
