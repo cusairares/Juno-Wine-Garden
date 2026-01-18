@@ -3,21 +3,69 @@ import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from 'react
 import { useCart } from '../context/CartContext';
 
 const Cart = () => {
-  const { items, increaseQuantity, decreaseQuantity, total } = useCart();
+  const { items, increaseQuantity, decreaseQuantity, total, placeOrder } =
+    useCart();
+
+  const handlePlaceOrder = () => {
+    Alert.alert("Checkout", "Proceed to payment?", [
+      {
+        text: "Cancel",
+        style: "cancel",
+      },
+      {
+        text: "Go to Payment",
+        onPress: () => {
+          // Dummy Payment Step
+          Alert.alert(
+            "Payment Gateway (Mock)",
+            `Total Amount: ${total.toFixed(2)} lei\n\nPlease confirm payment.`,
+            [
+              {
+                text: "Cancel Payment",
+                style: "cancel",
+                onPress: () => {
+                  Alert.alert(
+                    "Cancelled",
+                    "Payment cancelled. Order not placed."
+                  );
+                },
+              },
+              {
+                text: "Pay Now",
+                onPress: () => {
+                  placeOrder();
+                  Alert.alert(
+                    "Success",
+                    "Payment successful! Your order has been placed."
+                  );
+                },
+              },
+            ]
+          );
+        },
+      },
+    ]);
+  };
 
   const renderItem = ({ item }) => (
     <View style={styles.itemContainer}>
       <Image source={item.image} style={styles.itemImage} />
       <View style={styles.itemDetails}>
         <Text style={styles.itemName}>{item.name}</Text>
-        <Text style={styles.itemPrice}>${item.price.toFixed(2)}</Text>
+        <Text style={styles.itemPrice}>{item.price.toFixed(2)} lei</Text>
       </View>
       <View style={styles.quantityContainer}>
-        <TouchableOpacity onPress={() => decreaseQuantity(item.id)} style={styles.quantityButton}>
+        <TouchableOpacity
+          onPress={() => decreaseQuantity(item.id)}
+          style={styles.quantityButton}
+        >
           <Text style={styles.quantityButtonText}>-</Text>
         </TouchableOpacity>
         <Text style={styles.quantityText}>{item.quantity}</Text>
-        <TouchableOpacity onPress={() => increaseQuantity(item.id)} style={styles.quantityButton}>
+        <TouchableOpacity
+          onPress={() => increaseQuantity(item.id)}
+          style={styles.quantityButton}
+        >
           <Text style={styles.quantityButtonText}>+</Text>
         </TouchableOpacity>
       </View>
@@ -38,7 +86,7 @@ const Cart = () => {
       <FlatList
         data={items}
         renderItem={renderItem}
-        keyExtractor={item => item.id}
+        keyExtractor={(item) => item.id}
         contentContainerStyle={styles.listContainer}
       />
       <View style={styles.totalContainer}>
@@ -54,33 +102,33 @@ const Cart = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f8f8f8',
+    backgroundColor: "#f8f8f8",
   },
   center: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   emptyCartText: {
     fontSize: 20,
-    color: '#555',
+    color: "#555",
   },
   title: {
     fontSize: 24,
-    fontWeight: 'bold',
-    textAlign: 'center',
+    fontWeight: "bold",
+    textAlign: "center",
     marginVertical: 20,
   },
   listContainer: {
     paddingHorizontal: 10,
   },
   itemContainer: {
-    flexDirection: 'row',
-    backgroundColor: '#fff',
+    flexDirection: "row",
+    backgroundColor: "#fff",
     padding: 15,
     marginVertical: 5,
     borderRadius: 10,
-    alignItems: 'center',
-    shadowColor: '#000',
+    alignItems: "center",
+    shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 2,
@@ -97,29 +145,29 @@ const styles = StyleSheet.create({
   },
   itemName: {
     fontSize: 18,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   itemPrice: {
     fontSize: 16,
-    color: '#888',
+    color: "#888",
     marginTop: 5,
   },
   quantityContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
   },
   quantityButton: {
-    backgroundColor: '#e0e0e0',
+    backgroundColor: "#e0e0e0",
     borderRadius: 15,
     width: 30,
     height: 30,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   quantityButtonText: {
     fontSize: 18,
-    fontWeight: 'bold',
-    color: '#555',
+    fontWeight: "bold",
+    color: "#555",
   },
   quantityText: {
     fontSize: 18,
@@ -127,26 +175,26 @@ const styles = StyleSheet.create({
   },
   totalContainer: {
     borderTopWidth: 1,
-    borderTopColor: '#e0e0e0',
+    borderTopColor: "#e0e0e0",
     padding: 20,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
   },
   totalText: {
     fontSize: 20,
-    fontWeight: 'bold',
-    textAlign: 'right',
+    fontWeight: "bold",
+    textAlign: "right",
   },
   checkoutButton: {
-    backgroundColor: '#c00000',
+    backgroundColor: "#4D827E",
     padding: 15,
     borderRadius: 10,
-    alignItems: 'center',
+    alignItems: "center",
     marginTop: 10,
   },
   checkoutButtonText: {
-    color: '#fff',
+    color: "#fff",
     fontSize: 18,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
 });
 
