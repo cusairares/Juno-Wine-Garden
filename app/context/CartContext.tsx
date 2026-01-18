@@ -10,6 +10,14 @@ export interface CartItem {
   image?: ImageSourcePropType;
 }
 
+export interface Order {
+  id: string;
+  date: string; // ISO string
+  items: CartItem[];
+  total: number;
+  status: 'Pending' | 'Processing' | 'Shipped' | 'Delivered';
+}
+
 // Define the shape of the context
 interface ICartContext {
   items: CartItem[];
@@ -19,6 +27,8 @@ interface ICartContext {
   clearCart: () => void;
   total: number;
   itemCount: number;
+  orders: Order[];
+  placeOrder: () => void;
 }
 
 // Create the context
@@ -27,6 +37,7 @@ const CartContext = createContext<ICartContext | undefined>(undefined);
 // Create the provider component
 export const CartProvider = ({ children }: { children: ReactNode }) => {
   const [items, setItems] = useState<CartItem[]>([]);
+  const [orders, setOrders] = useState<Order[]>([]);
 
   const addToCart = (itemToAdd: Omit<CartItem, 'quantity'>) => {
     setItems(prevItems => {
@@ -74,6 +85,21 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
       [items]
   );
 
+  const placeOrder = () => {
+    if (items.length === 0) return;
+
+    const newOrder: Order = {
+      id: Math.random().toString(36).substr(2, 9),
+      date: new Date().toISOString(),
+      items: [...items],
+      total: total,
+      status: 'Pending',
+    };
+
+    setOrders(prevOrders => [newOrder, ...prevOrders]);
+    clearCart();
+  };
+
   const value = {
     items,
     addToCart,
@@ -81,7 +107,9 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     decreaseQuantity,
     clearCart,
     total,
-    itemCount
+    itemCount,
+    orders,
+    placeOrder
   };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
