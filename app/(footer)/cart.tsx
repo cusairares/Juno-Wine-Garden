@@ -1,6 +1,14 @@
-import React from 'react';
-import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { useCart } from '../context/CartContext';
+import React from "react";
+import {
+  Alert,
+  FlatList,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import { useCart } from "../context/CartContext";
 
 const Cart = () => {
   const { items, increaseQuantity, decreaseQuantity, total, placeOrder } =
@@ -18,7 +26,7 @@ const Cart = () => {
           // Dummy Payment Step
           Alert.alert(
             "Payment Gateway (Mock)",
-            `Total Amount: ${total.toFixed(2)} lei\n\nPlease confirm payment.`,
+            `Total Amount: ${total.toFixed(2)} RON\n\nPlease confirm payment.`,
             [
               {
                 text: "Cancel Payment",
@@ -52,7 +60,7 @@ const Cart = () => {
       <Image source={item.image} style={styles.itemImage} />
       <View style={styles.itemDetails}>
         <Text style={styles.itemName}>{item.name}</Text>
-        <Text style={styles.itemPrice}>{item.price.toFixed(2)} lei</Text>
+        <Text style={styles.itemPrice}>{item.price.toFixed(2)} RON</Text>
       </View>
       <View style={styles.quantityContainer}>
         <TouchableOpacity
@@ -90,8 +98,11 @@ const Cart = () => {
         contentContainerStyle={styles.listContainer}
       />
       <View style={styles.totalContainer}>
-        <Text style={styles.totalText}>Total: RON{total.toFixed(2)}</Text>
-        <TouchableOpacity style={styles.checkoutButton}>
+        <Text style={styles.totalText}>Total: {total.toFixed(2)} RON</Text>
+        <TouchableOpacity
+          style={styles.checkoutButton}
+          onPress={handlePlaceOrder}
+        >
           <Text style={styles.checkoutButtonText}>Place order</Text>
         </TouchableOpacity>
       </View>

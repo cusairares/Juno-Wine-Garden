@@ -1,13 +1,15 @@
 import { useState } from "react";
-import { ScrollView, Text, View } from "react-native";
+import { ScrollView, View } from "react-native";
 
 import { categoriesData } from "../categories";
+import { BarItem } from "../components/BarItem";
 import { CategoryItem } from "../components/CategoryItem";
 import { SubcategoryItem } from "../components/SubcategoryItem";
 import { WineItem } from "../components/WineItem";
-import { barData } from "../data/bar";
+import { Bar, barData } from "../data/bar";
 import { foodData } from "../data/foods";
 import { Wine, wineData } from "../data/wines";
+
 
 
 const Meniu = () =>{
@@ -75,8 +77,10 @@ const Meniu = () =>{
                 (item, index) =>
                 activeMainCategory === "Wines" ? (
                     <WineItem key={index} wineData={item as Wine} />
+                 ) : activeMainCategory === "Bar" ?(
+                    <BarItem key={index} barData={item as Bar} />
                 ) : (
-                    <Text key={index}>{(item).name}</Text>
+                    <></>
                 )
             )}
             </ScrollView>

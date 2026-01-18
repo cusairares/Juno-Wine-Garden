@@ -3,6 +3,7 @@ export interface Bar {
   quantity_ml: number;
   price: number;
   parent?: string;
+  alcohol_percent?: number;
 }
 
 export const barData: Record<string, Bar[]> = {
@@ -34,4 +35,61 @@ export const barData: Record<string, Bar[]> = {
       parent: "Lemonades"
     },
   ],
+  "Soft Drinks" : [
+    {
+      name: "Acqua Panna",
+      quantity_ml: 500,
+      price: 13,
+      parent: "Soft Drinks"
+    },
+    {
+      name: "San Pellegrino Sparkling",
+      quantity_ml: 500,
+      price: 13,
+      parent: "Soft Drinks"
+    },
+    {
+      name: "Apă Minerală Dorna 750 ml",
+      quantity_ml: 750,
+      price: 18,
+      parent: "Soft Drinks"
+    },
+    {
+      name: "Coca Cola",
+      quantity_ml: 330,
+      price: 13,
+      parent: "Soft Drinks"
+    },
+    {
+      name: "Coca Cola Zero",
+      quantity_ml: 330,
+      price: 13,
+      parent: "Soft Drinks"
+    },
+
+  ],
+  "Beers" : [
+    {
+      name: "Czell Clară 1893 - Brașov",
+      quantity_ml: 500,
+      price: 19,
+      parent: "Local Craft Beers",
+      alcohol_percent: 4.5,
+    },
+    {
+      name: "Czell Unfiltred 1893 - Brașov",
+      quantity_ml: 500,
+      price: 19,
+      parent: "Local Craft Beers",
+      alcohol_percent: 4.5,
+    },
+    {
+      name: "Peroni fara alcool",
+      quantity_ml: 500,
+      price: 19,
+      parent: "Peroni",
+      alcohol_percent: 0.0,
+    },
+    
+  ]
 };
