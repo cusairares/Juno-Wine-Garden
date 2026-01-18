@@ -17,17 +17,27 @@ interface BarItemProps {
 
 export function BarItem({ barData }: BarItemProps) {
   const { addToCart } = useCart();
-
-  const handleAddToCart = () => {
+  const API_KEY = "bY3koOPgVxdycZx4eTqUPU09Wv8wlI6XPPkMZR-p6m8"
+  const fetchImage = async (name : string) => {
+    try {
+      const response = await fetch(`https://api.unsplash.com/search/photos/?client_id=${API_KEY}&query=${name}&per_page=1`);
+      const data = await response.json();
+      return data.results[0].urls.small
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  const handleAddToCart = async () => {
     // The addToCart function needs an object with id, name, price, and image.
     // We are using barData.name as a temporary ID.
     // It's better to have a unique ID from your data source.
     // We are also using a placeholder image.
+    const imageUrl = await fetchImage(barData.name);
     addToCart({
-      id: barData.id || barData.name,
+      id: barData.name,
       name: barData.name,
       price: barData.price,
-      image: require("../../assets/images/react-logo.png"), // Replace with actual product image
+      image: imageUrl, // Replace with actual product image
     });
     console.log("Added to cart:", barData.name);
   };
@@ -52,7 +62,7 @@ export function BarItem({ barData }: BarItemProps) {
             </View>
             <View className="flex-row -mt-1">
               <Text className="text-primary/70 text-sm italic">
-                {barData.quantity_ml}ml, 
+                {barData.quantity_ml}ml
                 {barData.alcohol_percent != null && `, ${barData.alcohol_percent}%`}
               </Text>
             </View>

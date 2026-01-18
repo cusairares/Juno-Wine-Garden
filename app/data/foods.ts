@@ -25,13 +25,6 @@ export const foodData: Record<string, Food[]> = {
   ],
   "Salate": [
     {
-      name: "Inele de ceapă",
-      quantity_gr: 30,
-      ingredients: "nele de ceapă, sos sweet chili",
-      price: 128,
-      parent: "Gustări de împărțit"
-    },
-    {
       name: "Platou hummus",
       quantity_gr: 380,
       ingredients: "hummus cu ardei capia copt, mix salată, falafel, semințe susan, paprika afumată, lipie, ulei măsline",
@@ -39,4 +32,57 @@ export const foodData: Record<string, Food[]> = {
       parent: "Gustări de împărțit"
     }
   ],
+  "Pizza" : [
+    {
+      name: "Pizza margherita",
+      quantity_gr: 400,
+      ingredients: "sos roșii, mozzarella fior di latte, busuioc",
+      price: 38,
+      parent: "PIZZA"
+    },
+    {
+      name: "Pizza prosciutto funghi",
+      quantity_gr: 460,
+      ingredients: "sos roșii, mozzarella fior di latte, prosciutto cotto, ciuperci",
+      price: 42,
+      parent: "PIZZA"
+    },
+    {
+      name: "Pizza diavola",
+      quantity_gr: 450,
+      ingredients: "sos roșii, mozzarella fior di latte, salam picant Napoli",
+      price: 45,
+      parent: "PIZZA"
+    },
+    {
+      name: "Pizza nduja gorgonzola",
+      quantity_gr: 410,
+      ingredients: "mozzarella fior di latte, nduja Calabra, gorgonzola, roșii cherry",
+      price: 52,
+      parent: "SPECIAL"
+    },
+  ],
+  "Desert" : [
+    {
+      name: "Pizza dolce",
+      quantity_gr: 420,
+      ingredients: "mascarpone, nutella, zahăr pudră",
+      price: 54,
+      parent: "Desert"
+    },
+    {
+      name: "Papanași Juno",
+      quantity_gr: 320,
+      ingredients: "papanași, brânză dulce, mascarpone, nutella, zahăr pudră",
+      price: 38,
+      parent: "Desert"
+    },
+    {
+      name: "Papanași Clasici",
+      quantity_gr: 320,
+      ingredients: "papanași, brânză dulce, smântână, dulceață",
+      price: 38,
+      parent: "Desert"
+    },
+  ]
 };

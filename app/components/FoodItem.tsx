@@ -1,21 +1,19 @@
 import { Pressable, Text, TouchableOpacity, View } from "react-native";
 import { useCart } from "../context/CartContext";
 
-interface Wine {
+export interface Food {
   name: string;
-  quantity_ml: number;
-  alcohol_percent: number;
-  type: string;
+  quantity_gr: number;
+  ingredients: string;
   price: number;
-  // It's recommended to have a unique id for each product
-  id?: string;
+  parent?: string;
 }
 
-interface WineItemProps {
-  wineData: Wine;
+interface FoodItemProps {
+  foodData: Food;
 }
 
-export function WineItem({ wineData }: WineItemProps) {
+export function FoodItem({ foodData }: FoodItemProps) {
   const { addToCart } = useCart();
   const API_KEY = "bY3koOPgVxdycZx4eTqUPU09Wv8wlI6XPPkMZR-p6m8"
   const fetchImage = async (name : string) => {
@@ -27,25 +25,26 @@ export function WineItem({ wineData }: WineItemProps) {
       console.error(error);
     }
   };
+
   const handleAddToCart = async () => {
     // The addToCart function needs an object with id, name, price, and image.
     // We are using wineData.name as a temporary ID.
     // It's better to have a unique ID from your data source.
     // We are also using a placeholder image.
-    const imageUrl = await fetchImage(wineData.name)
+    const imageUrl =  await fetchImage(foodData.name)
     addToCart({
-      id: wineData.name,
-      name: wineData.name,
-      price: wineData.price,
+      id: foodData.name,
+      name: foodData.name,
+      price: foodData.price,
       image: imageUrl, // Replace with actual product image
     });
-    console.log("Added to cart:", wineData.name);
+    console.log("Added to cart:", foodData.name);
   };
 
   return (
     <Pressable
       className="flex-col w-full px-4 py-6 border-b border-gray-200"
-      onPress={() => console.log("Pressed:", wineData.name)}
+      onPress={() => console.log("Pressed:", foodData.name)}
     >
       {({ pressed }) => (
         <View
@@ -54,16 +53,15 @@ export function WineItem({ wineData }: WineItemProps) {
           <View className="flex-1">
             <View className="flex-row justify-between items-center">
               <Text className="text-primary text-lg font-medium flex-1 mr-2">
-                {wineData.name}
+                {foodData.name}
               </Text>
               <Text className="text-primary text-base font-medium">
-                RON{wineData.price}
+                RON{foodData.price}
               </Text>
             </View>
             <View className="flex-row -mt-1">
               <Text className="text-primary/70 text-sm italic">
-                {wineData.quantity_ml}ml, {wineData.type},{" "}
-                {wineData.alcohol_percent}%
+                {foodData.ingredients}
               </Text>
             </View>
           </View>

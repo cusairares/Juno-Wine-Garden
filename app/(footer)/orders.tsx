@@ -30,7 +30,7 @@ const Orders = () => {
             minute: "2-digit",
           })}
         </Text>
-        <Text style={styles.orderTotal}>{item.total.toFixed(2)} lei</Text>
+        <Text style={styles.orderTotal}>{item.total.toFixed(2)} RON</Text>
       </View>
       <View style={styles.statusContainer}>
         <Text
@@ -45,7 +45,7 @@ const Orders = () => {
           <Text style={styles.itemQuantity}>{cartItem.quantity}x</Text>
           <Text style={styles.itemName}>{cartItem.name}</Text>
           <Text style={styles.itemPrice}>
-            {(cartItem.price * cartItem.quantity).toFixed(2)} lei
+            {(cartItem.price * cartItem.quantity).toFixed(2)} RON
           </Text>
         </View>
       ))}

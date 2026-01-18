@@ -1,5 +1,5 @@
 import { Pressable, Text } from "react-native";
-import { Subcategory } from "../categories";
+import { Subcategory } from "../data/categories";
 
 interface SubcategoryItemProps {
   item: Subcategory;

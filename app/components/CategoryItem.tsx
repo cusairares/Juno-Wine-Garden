@@ -1,5 +1,5 @@
 import { Pressable, Text, View } from "react-native";
-import { Category } from "../categories";
+import { Category } from "../data/categories";
 
 interface CategoryItemProps {
   item: Category;

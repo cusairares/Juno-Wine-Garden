@@ -57,7 +57,7 @@ const Cart = () => {
 
   const renderItem = ({ item }) => (
     <View style={styles.itemContainer}>
-      <Image source={item.image} style={styles.itemImage} />
+      <Image source={{ uri: item.image }} style={styles.itemImage} />
       <View style={styles.itemDetails}>
         <Text style={styles.itemName}>{item.name}</Text>
         <Text style={styles.itemPrice}>{item.price.toFixed(2)} RON</Text>
@@ -150,6 +150,7 @@ const styles = StyleSheet.create({
     height: 60,
     borderRadius: 10,
     marginRight: 15,
+    resizeMode:"cover"
   },
   itemDetails: {
     flex: 1,
